@@ -1,0 +1,34 @@
+{
+  "name": "automation-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report",
+    "test:codegen": "npx playwright codegen",
+    "test:install": "npx playwright install",
+    "test:chrome": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chi2A/automation-exercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chi2A/automation-exercise/issues"
+  },
+  "homepage": "https://github.com/Chi2A/automation-exercise#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.6.0",
+    "typescript": "^5.9.2"
+  }
+}
