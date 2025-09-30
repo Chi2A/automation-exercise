@@ -16,7 +16,7 @@ test.describe('Test Case Page Tests' , () => {
 
     test("Test Cases Page validation", async ({ page }) => {
         await homePage.validateHomePageTitle();
-        await basePage.clickOnNavLink("Test Cases");
+        await testCasesPage.clickOnNavLink("Test Cases");
         await testCasesPage.verifyTestCasesTitle();
     });
 });
