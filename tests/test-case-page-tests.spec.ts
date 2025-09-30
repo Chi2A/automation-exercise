@@ -2,7 +2,7 @@ import { test, Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "../pages/base-page";
 import { HomePage } from "../pages/home-page";
 import { TestCasesPage } from "../pages/test-cases-page";
-test.describe("Test Case Page Tests" , () => {
+test.describe('Test Case Page Tests' , () => {
     let homePage: HomePage;
     let testCasesPage: TestCasesPage;
     let basePage: BasePage;
