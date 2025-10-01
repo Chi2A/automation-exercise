@@ -1,18 +1,21 @@
 import { test } from "@playwright/test";
 import { HomePage } from "../pages/home-page";
 import { ProductsPage } from "../pages/products-page";
+import { BasePage } from "../pages/base-page";
 import { ProductsDetailsPage } from "../pages/products-details-page";
 
 
 test.describe("Search Page Tests", () => {
   let homePage: HomePage;
   let productsPage: ProductsPage;
-  let productsDetailsPage: ProductsDetailsPage;
+    let productsDetailsPage: ProductsDetailsPage;
+    let basePage: BasePage;
   
   test.beforeEach("Setting up preconditions", async ({ page }) => {
     homePage = new HomePage(page);
     productsPage = new ProductsPage(page);
     productsDetailsPage = new ProductsDetailsPage(page);
+    basePage = new BasePage(page);
 
       await page.goto(process.env.baseUrl!);
       await homePage.validateHomePageTitle();

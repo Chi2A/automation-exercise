@@ -12,10 +12,12 @@ export class BasePage {
   constructor(page: Page) {
     this.page = page;
     this.topNavigationLocators = page.locator(`ul[class="nav navbar-nav"] li`); // all nav locators
-      this.footerText = page.locator("footer");
-    this.emailAddressField = page.locator("input[data-qa='signup-email']");
-    this.arrowButton = page.locator("button[data-qa='signup-button']");
-    this.successMessage = page.locator("div[class='alert-success']");
+      this.footerText = page.getByRole("heading", { name: "Subscription" });
+    this.emailAddressField = page.getByRole("textbox", {
+      name: "Your email address",
+    });
+    this.arrowButton = page.getByRole("button", { name: "" });
+    this.successMessage = page.locator('div[class="alert-success alert"]')
   }
 
   async clickOnNavLink(linkText: string) {
