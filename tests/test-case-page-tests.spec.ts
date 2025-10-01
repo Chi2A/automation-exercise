@@ -1,22 +1,28 @@
-import { test, Locator, Page, expect } from "@playwright/test";
-import { BasePage } from "../pages/base-page";
+import { test } from "@playwright/test";
 import { HomePage } from "../pages/home-page";
-import { TestCasesPage } from "../pages/test-cases-page";
-test.describe('Test Case Page Tests' , () => {
-    let homePage: HomePage;
-    let testCasesPage: TestCasesPage;
-    let basePage: BasePage;
+import { ProductsPage } from "../pages/products-page";
 
-    test.beforeEach("Setting up preconditions", async ({ page }) => {
-        homePage = new HomePage(page);
-        testCasesPage = new TestCasesPage(page);
-        basePage = new BasePage(page);
-        await page.goto("https://automationexercise.com/");
-    });
+test.describe("Search Page Tests", () => {
+  let homePage: HomePage;
+  let productsPage: ProductsPage;
+  
+  test.beforeEach("Setting up preconditions", async ({ page }) => {
+    homePage = new HomePage(page);
+    productsPage = new ProductsPage(page);
 
-    test("Test Cases Page validation", async ({ page }) => {
-        await homePage.validateHomePageTitle();
-        await testCasesPage.clickOnNavLink("Test Cases");
-        await testCasesPage.verifyTestCasesTitle();
-    });
+      await page.goto(process.env.baseUrl!);
+      await homePage.validateHomePageTitle();
+      await homePage.clickOnNavLink("Products");
+      await productsPage.verifyAllProductsTitle();
+  });
+
+  test("Verify All Products and Search Products", async ({ page }) => {
+    await productsPage.searchForProduct("top");
+    await productsPage.searchProductsTitleIsVisible();
+    await productsPage.verifyProductsAreVisible();
+  });
+    test('View Product Details', async ({ page }) => {
+        
+        await productsPage.viewFirstProductDetails();
+      })
 });
