@@ -16,4 +16,5 @@ export class HomePage extends BasePage {
     async validateHomePageTitle(): Promise<void> {
         await expect(this.homePageTitle).toBeVisible();
     }
+    
 }

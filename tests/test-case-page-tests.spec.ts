@@ -29,5 +29,10 @@ test.describe("Search Page Tests", () => {
         
         await productsPage.viewFirstProductDetails();
         await productsDetailsPage.verifyProductDetails();
-      })
+    })
+    test('Cart Functionality', async ({ page }) => {
+        await homePage.clickOnNavLink("Cart");
+        await basePage.verifyFooterTextIsVisible();
+        await basePage.verifySuccessMessage();
+    })
 });
