@@ -18,6 +18,8 @@ test.describe("Search Page Tests", () => {
     basePage = new BasePage(page);
 
       await page.goto(process.env.baseUrl!);
+      await page.goto('https://automationexercise.com/products');
+      await page.getByRole('heading', { name: 'Category' }).click();
       await homePage.validateHomePageTitle();
       await homePage.clickOnNavLink("Products");
       await productsPage.verifyAllProductsTitle();
