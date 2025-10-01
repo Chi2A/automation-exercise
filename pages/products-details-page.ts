@@ -12,7 +12,7 @@ export class ProductsDetailsPage extends BasePage {
     private brand: Locator;
     constructor(page: Page) {
         super(page);
-        this.productInfo = page.locator(".productinfo > img").first();
+        this.productInfo = page.locator('div[class="view-product"] img');
         this.productName = page.getByRole("heading", { name: "Blue Top" })
         this.category = page.getByText("Category: Women > Tops");
         this.price = page.getByText("Rs.");
