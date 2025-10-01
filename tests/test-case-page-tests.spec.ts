@@ -33,6 +33,7 @@ test.describe("Search Page Tests", () => {
     test('Cart Functionality', async ({ page }) => {
         await homePage.clickOnNavLink("Cart");
         await basePage.verifyFooterTextIsVisible();
+        await basePage.enterEmailAddress("test@example.com");
         await basePage.verifySuccessMessage();
     })
 });
