@@ -1,14 +1,18 @@
 import { test } from "@playwright/test";
 import { HomePage } from "../pages/home-page";
 import { ProductsPage } from "../pages/products-page";
+import { ProductsDetailsPage } from "../pages/products-details-page";
+
 
 test.describe("Search Page Tests", () => {
   let homePage: HomePage;
   let productsPage: ProductsPage;
+  let productsDetailsPage: ProductsDetailsPage;
   
   test.beforeEach("Setting up preconditions", async ({ page }) => {
     homePage = new HomePage(page);
     productsPage = new ProductsPage(page);
+    productsDetailsPage = new ProductsDetailsPage(page);
 
       await page.goto(process.env.baseUrl!);
       await homePage.validateHomePageTitle();
@@ -24,5 +28,6 @@ test.describe("Search Page Tests", () => {
     test('View Product Details', async ({ page }) => {
         
         await productsPage.viewFirstProductDetails();
+        await productsDetailsPage.verifyProductDetails();
       })
 });
