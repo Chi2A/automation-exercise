@@ -40,4 +40,11 @@ test.describe("Search Page Tests", () => {
         await basePage.enterEmailAddress("test@example.com");
         await basePage.verifySuccessMessage();
     })
+    test("Home Page Subscription Verification", async ({ page }) => {
+        await homePage.clickOnNavLink("Home");
+        await basePage.scrollToFooter();
+        await basePage.verifyFooterTextIsVisible();
+        await basePage.enterEmailAddress("test@example.com");
+        await basePage.verifySuccessMessage();
+    });
 });
