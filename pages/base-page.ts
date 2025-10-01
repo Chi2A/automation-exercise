@@ -23,6 +23,9 @@ export class BasePage {
   async clickOnNavLink(linkText: string) {
     await this.topNavigationLocators.getByText(linkText).click();
   }
+  async scrollToFooter(): Promise<void> {
+    await this.footerText.scrollIntoViewIfNeeded();
+  }
   async verifyFooterTextIsVisible(): Promise<void> {
     await expect(this.footerText).toBeVisible();
     await expect(this.footerText).toHaveText("Subscription");
