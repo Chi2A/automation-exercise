@@ -8,6 +8,7 @@ export class ProductsPage extends BasePage {
   private searchedProductsTitle: Locator;
   private allProducts: Locator;
   private viewProductLink: Locator;
+  
 
   constructor(page: Page) {
     super(page);
@@ -15,14 +16,13 @@ export class ProductsPage extends BasePage {
     this.searchBar = page.locator("input[name='search']");
     this.searchButton = page.locator("button[id='submit_search']");
     this.searchedProductsTitle = page.locator(
-      "h2:has-text('Searched Products')"
-    );
+      "h2:has-text('Searched Products')");
     this.allProducts = page.locator(
-      'div[class="features_items"] div[class="single-products"]'
-    );
+      'div[class="features_items"] div[class="single-products"]');
     this.viewProductLink = page
       .locator(".nav.nav-pills.nav-justified > li > a")
       .first();
+    
   }
   async verifyAllProductsTitle(): Promise<void> {
     await expect(this.allProductsTitle).toBeVisible();
@@ -46,4 +46,5 @@ export class ProductsPage extends BasePage {
   async viewFirstProductDetails(): Promise<void> {
     await this.viewProductLink.click();
   }
+ 
 }

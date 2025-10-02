@@ -69,4 +69,11 @@ test.describe("Search Page Tests", () => {
     await homePage.brandSelection("H&M");
     await brandsPage.verifyBrandsProductsTitle("Brand - H&M Products");
   });
+
+  test("Review Submission", async ({ page }) => {
+    await productsPage.viewFirstProductDetails();
+    await productsDetailsPage.verifyWriteYourReviewTitle();
+    await productsDetailsPage.reviewSubmission("Sarah", "sarah12@gmail.com", "Great product!");
+    await productsDetailsPage.verifyReviewSubmissionMessage();
+  });
 });
