@@ -14,12 +14,9 @@ export class CategoryPage extends BasePage {
         this.tshirtLink = page.getByRole("link", { name: "Tshirts" });
        
     }
-    async verifyProductsTitle(): Promise<void> {
+    async verifyProductsTitle(expectedTitle:string): Promise<void> {
         await expect(this.productsTitle).toBeVisible();
-        await expect(this.productsTitle).toHaveText('Women - Dress Products');
-         await expect(this.productsTitle).toHaveText(
-           "Men - TSHIRTS PRODUCTS"
-         );
+        await expect(this.productsTitle).toHaveText(expectedTitle);
     }
     async menCategorySelection(): Promise<void> {
         await this.menCategory.click();
