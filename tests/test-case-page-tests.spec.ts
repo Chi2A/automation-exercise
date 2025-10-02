@@ -4,6 +4,7 @@ import { ProductsPage } from "../pages/products-page";
 import { BasePage } from "../pages/base-page";
 import { ProductsDetailsPage } from "../pages/products-details-page";
 import { CategoryPage } from "../pages/category-page";
+import  { BrandsPage } from "../pages/brands-page"; 
 
 
 test.describe("Search Page Tests", () => {
@@ -12,13 +13,15 @@ test.describe("Search Page Tests", () => {
     let productsDetailsPage: ProductsDetailsPage;
     let basePage: BasePage;
     let categoryPage: CategoryPage;
+    let brandsPage: BrandsPage = new BrandsPage();
   
   test.beforeEach("Setting up preconditions", async ({ page }) => {
     homePage = new HomePage(page);
     productsPage = new ProductsPage(page);
     productsDetailsPage = new ProductsDetailsPage(page);
       basePage = new BasePage(page);
-        categoryPage = new CategoryPage(page);
+      categoryPage = new CategoryPage(page);
+        brandsPage = new BrandsPage(page);
 
       await page.goto(process.env.baseUrl!);
       await page.goto('https://automationexercise.com/products');
@@ -57,11 +60,15 @@ test.describe("Search Page Tests", () => {
         await homePage.validateCategoryTitle()
         await homePage.womenCategorySelection();
         await homePage.dressItemSelection();
-        await categoryPage.verifyProductsTitle();
+        await categoryPage.verifyProductsTitle('Women - Dress Products');
         await categoryPage.menCategorySelection();
         await categoryPage.tshirtLinkSelection();
-    
+       await categoryPage.verifyProductsTitle('Men - Tshirts Products');
 
 
     })
+    test('Brands Page Validation', async ({ page }) => { 
+        await homePage.verifyBrandsTitle();
+        await productsPage.verifyProductsAreVisible();
+        await brandsPage.selectBrandProducts('Polo');
 });

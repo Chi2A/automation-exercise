@@ -6,16 +6,18 @@ export class HomePage extends BasePage {
     private categoryTitle: Locator;
     private womenCategory: Locator;
     private dressItemLink: Locator;
+    private brandsTitle: Locator;
+
 
     constructor(page: Page) {
         super(page);
         this.homePageTitle = page.getByRole("link", { name: "Website for automation" });
         this.categoryTitle = page.getByRole('heading', { name: 'Category' });
         this.womenCategory = page.getByRole('link', { name: ' Women' })
-        this.dressItemLink = page
-            .getByRole("listitem")
-            .filter({ hasText: "Dress" });
-        
+        this.dressItemLink = page.getByRole("link", { name: "Dress" });
+        this.brandsTitle = page.locator("ul[class='nav nav-pills nav-stacked'] li");
+       
+
     };
     
 
@@ -32,5 +34,10 @@ export class HomePage extends BasePage {
     async dressItemSelection(): Promise<void> {
         await this.dressItemLink.click();
     }
+    async verifyBrandsTitle(): Promise<void> {
+        await expect(this.brandsTitle).toBeVisible();
+        await expect(this.brandsTitle).toHaveText("BRANDS");
+    }
+
 }
 
