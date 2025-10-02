@@ -1,22 +1,15 @@
-import { Locator,Page,expect}from "@playwright/test";
-// This is a placeholder file to create a new page object if needed in the future.
+import { Locator, Page, expect } from "@playwright/test";
+import { BasePage } from "./base-page";
 
-export class BrandsPage {
-    private page: Page;
-    private brandsProducts: Locator;
-    
+export class BrandsPage extends BasePage {
+  private brandsProductsTitle: Locator;
 
-    constructor(page: Page) {
-        this.page = page;
-        this.brandsProducts = page.locator('h2[class="title text-center"]');
-    }
-
-    async verifyBrandTitle(): Promise<void> {
-        await expect(this.brandsProducts).toBeVisible();
-    }
-    async selectBrand(brandName: string): Promise<void> {
-        await this.brandsProducts.getByText(brandName).click();
-        await expect(this.brandsProducts).toHaveText(brandName);
-    }
-   
+  constructor(page: Page) {
+    super(page);
+    this.brandsProductsTitle = page.locator('h2[class="title text-center"]');
+  }
+    async verifyBrandsProductsTitle(expectedTitle:string): Promise<void> {
+    await expect(this.brandsProductsTitle).toBeVisible();
+    await expect(this.brandsProductsTitle).toHaveText(expectedTitle);
+  }
 }

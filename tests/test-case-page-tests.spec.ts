@@ -13,7 +13,7 @@ test.describe("Search Page Tests", () => {
     let productsDetailsPage: ProductsDetailsPage;
     let basePage: BasePage;
     let categoryPage: CategoryPage;
-    let brandsPage: BrandsPage = new BrandsPage();
+    let brandsPage: BrandsPage;
   
   test.beforeEach("Setting up preconditions", async ({ page }) => {
     homePage = new HomePage(page);
@@ -67,8 +67,11 @@ test.describe("Search Page Tests", () => {
 
 
     })
-    test('Brands Page Validation', async ({ page }) => { 
+    test('Brands Page Validation', async ({ page }) => {
         await homePage.verifyBrandsTitle();
-        await productsPage.verifyProductsAreVisible();
-        await brandsPage.selectBrandProducts('Polo');
+        await homePage.brandSelection("Polo");
+        await brandsPage.verifyBrandsProductsTitle("Brand - Polo Products");
+        await homePage.brandSelection("H&M");
+        await brandsPage.verifyBrandsProductsTitle("Brand - H&M Products");
+    });
 });
