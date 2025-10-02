@@ -8,6 +8,12 @@ export class HomePage extends BasePage {
   private dressItemLink: Locator;
   private brandsTitle: Locator;
   private brandsNames: Locator;
+  private signUpLoginLink: Locator;
+  private loginToYourAccountTitle: Locator;
+  private loginEmail: Locator;
+  private loginPassword: Locator
+  private loginButton: Locator;
+  private errorMessage:Locator
 
   constructor(page: Page) {
     super(page);
@@ -19,6 +25,12 @@ export class HomePage extends BasePage {
     this.dressItemLink = page.getByRole("link", { name: "Dress" });
     this.brandsTitle = page.locator('div[class="brands_products"] h2');
     this.brandsNames = page.locator("ul[class='nav nav-pills nav-stacked'] li");
+    this.signUpLoginLink = page.locator('a[href="/login"]');
+    this.loginToYourAccountTitle = page.locator("div[class='login-form'] h2");
+    this.loginEmail = page.locator('input[data-qa="login-email"]')
+    this.loginPassword = page.locator('input[data-qa="login-password"]')
+    this.loginButton = page.locator('button[data-qa="login-button"]')
+    this.errorMessage = page.locator("div[class='login-form'] p");
   }
 
   async validateHomePageTitle(): Promise<void> {
@@ -40,5 +52,21 @@ export class HomePage extends BasePage {
   }
   async brandSelection(brandName: string): Promise<void> {
     await this.brandsNames.getByText(brandName).click();
+  }
+  async clickOnSignUpLoginLink(): Promise<void> {
+    await this.signUpLoginLink.click();
+  }
+  async verifyLoginTitle(): Promise<void> {
+    await expect(this.loginToYourAccountTitle).toBeVisible();
+    await expect(this.loginToYourAccountTitle).toHaveText("Login to your account");
+  }
+  async login(email: string, password: string): Promise<void> {
+    await this.loginEmail.fill(email);
+    await this.loginPassword.fill(password);
+    await this.loginButton.click();
+  }
+  async verifyErrorMessage(): Promise<void> {
+    await expect(this.errorMessage).toBeVisible();
+    await expect(this.errorMessage).toHaveText("Your email or password is incorrect!");
   }
 }

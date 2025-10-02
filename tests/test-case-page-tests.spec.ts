@@ -69,4 +69,11 @@ test.describe("Search Page Tests", () => {
     await homePage.brandSelection("H&M");
     await brandsPage.verifyBrandsProductsTitle("Brand - H&M Products");
   });
-});
+
+  test("Login to Account", async ({ page }) => {
+    await homePage.clickOnSignUpLoginLink();
+    await homePage.verifyLoginTitle();
+    await homePage.login("sarah21@gmail.com", "Sarah12345@");
+    await homePage.verifyErrorMessage();
+  });
+})
