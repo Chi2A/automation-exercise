@@ -73,7 +73,7 @@ test.describe("Search Page Tests", () => {
   test("Login to Account", async ({ page }) => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyLoginTitle();
-    await homePage.login("sarah21@gmail.com", "Sarah12345@");
+    await homePage.login("sarah21@gmail.com", "Sarah124567345@");
     await homePage.verifyErrorMessage();
   });
 })
