@@ -12,7 +12,7 @@ export class ProductsDetailsPage extends BasePage {
   private brand: Locator;
     private writeYourReviewTitle: Locator;
     private yourNameField: Locator;
-    private emailAddressField: Locator;
+    private emailAddress: Locator;
     private addReviewTextArea: Locator;
     private submitButton: Locator;
     private reviewSubmissionMessage: Locator;
@@ -30,7 +30,7 @@ export class ProductsDetailsPage extends BasePage {
     this.brand = page.getByText("Brand:");
       this.writeYourReviewTitle = page.locator('a[href="#reviews"]');
       this.yourNameField = page.locator('input[id="name"]');  
-      this.emailAddressField = page.locator('input[id="email"]');
+      this.emailAddress = page.locator('input[id="email"]');
       this.addReviewTextArea = page.locator('textarea[id="review"]');
       this.submitButton = page.locator('button[id="button-review"]');
       this.reviewSubmissionMessage = page.locator("div[class='alert-success alert'] span");
@@ -50,7 +50,7 @@ export class ProductsDetailsPage extends BasePage {
   }
     async reviewSubmission(name: string, email: string, review: string): Promise<void> {
       await this.yourNameField.fill(name);
-      await this.emailAddressField.fill(email);
+      await this.emailAddress.fill(email);
       await this.addReviewTextArea.fill(review);
       await this.submitButton.click();
     }
