@@ -13,7 +13,10 @@ export class HomePage extends BasePage {
   private loginEmail: Locator;
   private loginPassword: Locator
   private loginButton: Locator;
-  private errorMessage:Locator
+  private errorMessage: Locator
+  private successfulLoginMessage: Locator;
+  private deleteAccountLink: Locator;
+  private accountDeletedMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -31,6 +34,9 @@ export class HomePage extends BasePage {
     this.loginPassword = page.locator('input[data-qa="login-password"]')
     this.loginButton = page.locator('button[data-qa="login-button"]')
     this.errorMessage = page.locator("div[class='login-form'] p");
+    this.successfulLoginMessage = page.locator('i[class="fa fa-user"]')
+    this.deleteAccountLink = page.locator('a[href="/delete_account"]')
+    this.accountDeletedMessage = page.locator("div[class='col-sm-9 col-sm-offset-1'] b")
   }
 
   async validateHomePageTitle(): Promise<void> {
@@ -69,4 +75,15 @@ export class HomePage extends BasePage {
     await expect(this.errorMessage).toBeVisible();
     await expect(this.errorMessage).toHaveText("Your email or password is incorrect!");
   }
+  async verifySuccessfulLogin(userName:string): Promise<void> {
+    expect(this.topNavigationLocators.last());
+  }
+  async deleteAccount(): Promise<void> {
+    await this.deleteAccountLink.click();
+  }
+  async verifyAccountDeletedMessage(): Promise<void> {
+    await expect(this.accountDeletedMessage).toBeVisible();
+    await expect(this.accountDeletedMessage).toHaveText("Account Deleted!");
+  }
+
 }

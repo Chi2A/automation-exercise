@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 import { HomePage } from "../../pages/home-page";
 
+
 test.describe("User Authentication", () => {
   let homePage: HomePage;
 
@@ -11,10 +12,22 @@ test.describe("User Authentication", () => {
     await homePage.validateHomePageTitle();
   });
 
-  test("should handle invalid login credentials", async ({ page }) => {
+  test("Login with invalid credentials", async ({ page }) => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyLoginTitle();
     await homePage.login("sarah21@gmail.com", "Sarah124567345@");
     await homePage.verifyErrorMessage();
+  });
+
+  test("Login with valid credentials", async ({ page }) => {
+    await homePage.clickOnSignUpLoginLink();
+    await homePage.verifyLoginTitle();
+    const email = process.env.email!;
+    const password = process.env.password!;
+    await homePage.login(email, password);
+    await homePage.verifySuccessfulLogin(email);
+    await homePage.deleteAccount();
+    await homePage.verifyAccountDeletedMessage();
+
   });
 });
