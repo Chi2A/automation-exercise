@@ -35,7 +35,7 @@ export class HomePage extends BasePage {
     this.loginButton = page.locator('button[data-qa="login-button"]')
     this.errorMessage = page.locator("div[class='login-form'] p");
     this.successfulLoginMessage = page.locator('i[class="fa fa-user"]')
-    this.deleteAccountLink = page.locator('a[href="/delete_account"]')
+    this.deleteAccountLink = page.getByRole('link', { name: ' Delete Account' });
     this.accountDeletedMessage = page.locator("div[class='col-sm-9 col-sm-offset-1'] b")
   }
 
