@@ -18,7 +18,10 @@ export class HomePage extends BasePage {
   private deleteAccountLink: Locator;
   private accountDeletedMessage: Locator;
   private newUserSignUpForm: Locator
-  private excistiUserLoginMessage: Locator;
+  private existingUserLoginMessage: Locator;
+  private signUpName: Locator;
+  private signUpButton: Locator;
+  private signUpEmail: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -34,13 +37,16 @@ export class HomePage extends BasePage {
     this.loginToYourAccountTitle = page.locator("div[class='login-form'] h2");
     this.loginEmail = page.locator('input[data-qa="login-email"]')
     this.loginPassword = page.locator('input[data-qa="login-password"]')
+    this.signUpName = page.locator('input[data-qa="signup-name"]')
     this.loginButton = page.locator('button[data-qa="login-button"]')
     this.errorMessage = page.locator("div[class='login-form'] p");
     this.successfulLoginMessage = page.locator('i[class="fa fa-user"]')
     this.deleteAccountLink = page.getByRole('link', { name: ' Delete Account' });
     this.accountDeletedMessage = page.locator("div[class='col-sm-9 col-sm-offset-1'] b")
     this.newUserSignUpForm = page.locator("div[class='signup-form'] h2")
-    this.excistiUserLoginMessage = page.locator("form[action='/signup'] p")
+    this.signUpButton = page.locator("button[data-qa=\"signup-button\"]")
+    this.signUpEmail = page.locator('input[data-qa="signup-email"]')
+    this.existingUserLoginMessage = page.locator("div[class='signup-form'] p")
   }
 
   async validateHomePageTitle(): Promise<void> {
@@ -94,8 +100,14 @@ export class HomePage extends BasePage {
     await expect(this.newUserSignUpForm).toHaveText("New User Signup!");
   }
   async verifyExistingUserLoginMessage(): Promise<void> {
-    await expect(this.excistiUserLoginMessage).toBeVisible();
-    await expect(this.excistiUserLoginMessage).toHaveText("Email Address already exist!");
+    await expect(this.existingUserLoginMessage).toBeVisible();
+    await expect(this.existingUserLoginMessage).toHaveText("Email Address already exist!");
   }
+  async signUp(name:string, email:string): Promise<void> {
+    await this.signUpName.fill(name);
+    await this.signUpEmail.fill(email);
+    await this.signUpButton.click();
+  }
+
 
 }

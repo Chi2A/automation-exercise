@@ -34,6 +34,8 @@ test.describe("User Authentication", () => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyNewUserSignUpForm();
     const email = process.env.email!;
+    const userName = process.env.userName!;
+    await homePage.signUp(userName, email);
     await homePage.verifyExistingUserLoginMessage();
   });
 
