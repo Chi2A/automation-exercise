@@ -17,6 +17,8 @@ export class HomePage extends BasePage {
   private successfulLoginMessage: Locator;
   private deleteAccountLink: Locator;
   private accountDeletedMessage: Locator;
+  private newUserSignUpForm: Locator
+  private excistiUserLoginMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -37,6 +39,8 @@ export class HomePage extends BasePage {
     this.successfulLoginMessage = page.locator('i[class="fa fa-user"]')
     this.deleteAccountLink = page.getByRole('link', { name: ' Delete Account' });
     this.accountDeletedMessage = page.locator("div[class='col-sm-9 col-sm-offset-1'] b")
+    this.newUserSignUpForm = page.locator("div[class='signup-form'] h2")
+    this.excistiUserLoginMessage = page.locator("form[action='/signup'] p")
   }
 
   async validateHomePageTitle(): Promise<void> {
@@ -84,6 +88,14 @@ export class HomePage extends BasePage {
   async verifyAccountDeletedMessage(): Promise<void> {
     await expect(this.accountDeletedMessage).toBeVisible();
     await expect(this.accountDeletedMessage).toHaveText("Account Deleted!");
+  }
+  async verifyNewUserSignUpForm(): Promise<void> {
+    await expect(this.newUserSignUpForm).toBeVisible();
+    await expect(this.newUserSignUpForm).toHaveText("New User Signup!");
+  }
+  async verifyExistingUserLoginMessage(): Promise<void> {
+    await expect(this.excistiUserLoginMessage).toBeVisible();
+    await expect(this.excistiUserLoginMessage).toHaveText("Email Address already exist!");
   }
 
 }

@@ -30,4 +30,13 @@ test.describe("User Authentication", () => {
     await homePage.verifyAccountDeletedMessage();
 
   });
+  test("Signing up with existing user", async ({ page }) => {
+    await homePage.clickOnSignUpLoginLink();
+    await homePage.verifyNewUserSignUpForm();
+    const email = process.env.email!;
+    await homePage.verifyExistingUserLoginMessage();
+  });
+
+
+
 });
