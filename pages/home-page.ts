@@ -76,7 +76,7 @@ export class HomePage extends BasePage {
     await expect(this.errorMessage).toHaveText("Your email or password is incorrect!");
   }
   async verifySuccessfulLogin(_userName:string): Promise<void> {
-    expect(this.topNavigationLocators.last());
+    expect(this.topNavigationLocators).toHaveText(`Logged in as ${_userName}`);
   }
   async deleteAccount(): Promise<void> {
     await this.deleteAccountLink.click();
