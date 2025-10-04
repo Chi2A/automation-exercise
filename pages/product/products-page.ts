@@ -10,6 +10,7 @@ export class ProductsPage extends BasePage {
   private viewProductLink!: Locator;
   private allAddToCartButtons!: Locator;
   private continueShoppingButton!: Locator;
+  private quantityInput!  : Locator;
 
   constructor(page: Page) {
     super(page);
@@ -35,6 +36,7 @@ export class ProductsPage extends BasePage {
     this.continueShoppingButton = this.page.locator(
       'button[class="btn btn-success close-modal btn-block"]'
     );
+    this.quantityInput = this.page.locator('input[name="quantity"]')
   }
 
   async verifyAllProductsTitle(): Promise<void> {
@@ -69,4 +71,10 @@ export class ProductsPage extends BasePage {
     }
   }
 
+  async changeProductQuantity(quantity: string): Promise<void> {
+    await this.quantityInput.fill(quantity);
+  }
+
+
 }
+

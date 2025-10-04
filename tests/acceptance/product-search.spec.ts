@@ -32,7 +32,7 @@ test.describe("Product Search and Viewing", () => {
   });
 
   test("should view product details successfully", async ({ page }) => {
-    await productsPage.viewFirstProductDetails();
+    await productsPage.viewProductDetails();
     await productsDetailsPage.verifyProductDetails();
   });
 
