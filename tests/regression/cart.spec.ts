@@ -19,20 +19,27 @@ test.describe("Product Search and Viewing", () => {
     
         await page.goto(process.env.baseUrl!);
         await homePage.validateHomePageTitle();
-        await homePage.clickOnNavLink("Products");
-        await productsPage.verifyAllProductsTitle();
     });
-test("Verify Product quantity in Cart", async ({ page }) => { 
-    await productsPage.viewFirstProductDetails();
-    await productsDetailsPage.verifyProductDetails()
-    await productsPage.changeProductQuantity("4");
-    await productsDetailsPage.addToCart();
-    await productsDetailsPage.clickOnCart();
+    test("Verify Product quantity in Cart", async ({ page }) => {
+        await productsPage.viewFirstProductDetails();
+        await productsDetailsPage.verifyProductDetails()
+        await productsPage.changeProductQuantity("4");
+        await productsDetailsPage.addToCart();
+        await productsDetailsPage.clickOnCart();
     
 
     });
 
-        })
+    test("Remove Products From Cart", async ({ page }) => {
+        await productsPage.addItemsToCart(10);
+        await productsDetailsPage.clickOnCart();
+        await cartPage.verifyCartPageTitle();
+        await cartPage.deleteAllProductsFromCart();
+        await cartPage.verifyProductsInCart();
+    });
+
+});
+
 
 
 

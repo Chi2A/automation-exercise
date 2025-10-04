@@ -10,7 +10,7 @@ export class ProductsPage extends BasePage {
   private viewProductLink!: Locator;
   private allAddToCartButtons!: Locator;
   private continueShoppingButton!: Locator;
-  private quantityInput!  : Locator;
+  private quantityInput!: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -76,5 +76,13 @@ export class ProductsPage extends BasePage {
   }
 
 
+  async addItemsToCart(amountOfItems: number): Promise<void> {
+    for (let i = 1; i <= amountOfItems; i++) {
+      await this.allAddToCartButtons.nth(i).click();
+      await this.continueShoppingButton.click();
+    }
+
+
+  }
 }
 
