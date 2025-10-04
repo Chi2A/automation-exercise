@@ -9,6 +9,9 @@ export class BasePage {
   private successMessage!: Locator;
   private contactUsLink!: Locator;
   private alert!: Locator;
+  private subscriptionText!: Locator;
+  private scrollUpArrowButton!: Locator;
+  private subUpperText!: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -27,6 +30,11 @@ export class BasePage {
     this.successMessage = this.page.locator('div[class="alert-success alert"]');
     this.contactUsLink = this.page.locator('a[href="/contact_us"] i');
     this.alert = this.page.locator('div[class="status alert alert-success"]');
+    this.subscriptionText = this.page.locator('div[class="single-widget"]');
+    this.scrollUpArrowButton = this.page.locator('a[id="scrollUp"]');
+    this.subUpperText = this.page.locator(
+      'div[class="item active"] div[class="col-sm-6"] h2'
+    );
   }
 
 
@@ -68,4 +76,14 @@ export class BasePage {
     this.page.once('dialog', async dialog => await dialog.accept());
     await this.alert.click();
   }
+  async verifySubscriptionTextIsVisible(): Promise<void> {
+    await expect(this.subscriptionText).toBeVisible();
+  }
+  async scrollToTop(): Promise<void> {
+    await this.scrollUpArrowButton.click();
+  }
+  async verifySubUpperTextIsVisible(): Promise<void> {
+    await expect(this.subUpperText).toBeVisible();
+  }
+
 }
