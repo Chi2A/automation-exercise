@@ -8,6 +8,7 @@ export class CartsPage extends BasePage {
   private cartPageTitle: Locator;
   private deleteIcon: Locator;
   private emptyCartMessage: Locator;
+  private proceedToCheckoutButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -15,6 +16,7 @@ export class CartsPage extends BasePage {
     this.cartPageTitle = page.locator("ol[class='breadcrumb'] li").nth(1);
     this.deleteIcon = page.locator("a[class='cart_quantity_delete']");
     this.emptyCartMessage = page.locator("span[id='empty_cart'] b");
+    this.proceedToCheckoutButton = page.locator("a[class='btn btn-default check_out']");
   }
 
   async verifyCartPageTitle(): Promise<void> {
@@ -37,7 +39,9 @@ export class CartsPage extends BasePage {
   await expect(this.emptyCartMessage).toBeVisible();
   await expect(this.emptyCartMessage).toHaveText("Cart is empty!");
   } 
-  
+  async proceedToCheckout(): Promise<void> {
+    await this.proceedToCheckoutButton.click();
+  }
 
 
   
