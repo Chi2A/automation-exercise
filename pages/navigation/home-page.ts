@@ -26,6 +26,9 @@ export class HomePage extends BasePage {
   private loginButton!: Locator;
   private errorMessage!: Locator;
 
+  private recommendedItemsTitle!: Locator;
+  private recommendedItems!: Locator;
+
   constructor(page: Page) {
     super(page);
     this.initializeHomePageLocators();
@@ -57,6 +60,13 @@ export class HomePage extends BasePage {
     this.loginPassword = this.page.locator('input[data-qa="login-password"]');
     this.loginButton = this.page.locator('button[data-qa="login-button"]');
     this.errorMessage = this.page.locator("div[class='login-form'] p");
+
+    this.recommendedItemsTitle = this.page.getByRole("heading", {
+      name: "Recommended items",
+    });
+    this.recommendedItems = this.page.locator(
+      'a[class="btn btn-default add-to-cart"]'
+    );
   }
 
   // Page Validation Methods
@@ -143,5 +153,15 @@ export class HomePage extends BasePage {
     await expect(this.errorMessage).toHaveText(
       "Your email or password is incorrect!"
     );
+  }
+
+  async verifyRecommendedItemsTitle(): Promise<void> {
+    await expect(this.recommendedItemsTitle).toBeVisible();
+    await expect(this.recommendedItemsTitle).toHaveText("recommended items");
+  }
+  async addRecommendedItemsToCart(amountOfItems: number): Promise<void> {
+    for (let i = 0; i < amountOfItems; i++) {
+      await this.recommendedItems.nth(i).first().click();
+    }
   }
 }
