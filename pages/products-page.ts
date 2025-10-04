@@ -3,6 +3,7 @@ import { BasePage } from "./base-page";
 
 export class ProductsPage extends BasePage {
   
+  
   private allProductsTitle: Locator;
   private searchBar: Locator;
   private searchButton: Locator;
@@ -59,13 +60,8 @@ export class ProductsPage extends BasePage {
       const addToCartButton = this.allProducts.nth(i).locator('a[data-product-id]');
       await addToCartButton.click();
       
-      // Wait for and handle the modal that appears after adding to cart
-      try {
-        await this.continueShoppingButton.waitFor({ timeout: 2000 });
-        await this.continueShoppingButton.click();
-      } catch {
-        // Continue if modal doesn't appear
+     
+        
       }
     }
   }
-}

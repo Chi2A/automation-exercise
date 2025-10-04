@@ -23,7 +23,7 @@ export class ProductsDetailsPage extends BasePage {
     this.condition = page.getByText("Condition:");
     this.brand = page.getByText("Brand:");
     this.addToCartButton = page.locator('button[class="btn btn-default cart"]');
-    this.cartIcon = page.locator('a[href="/view_cart"]');
+    this.cartIcon = page.locator('a[href="/view_cart"] i');
     this.allProducts = page.locator(
       'div[class="features_items"] div[class="single-products"]'
     );
@@ -49,10 +49,11 @@ export class ProductsDetailsPage extends BasePage {
       await this.continueShoppingButton.click();
     }
   }
-
-  async clickOnCartIcon(): Promise<void> {
-    await this.cartIcon.click();
+  async addToCart(): Promise<void> {
+    await this.addToCartButton.click();
   }
+
+ 
 
   async clickOnCart(): Promise<void> {
     await this.cartIcon.click();

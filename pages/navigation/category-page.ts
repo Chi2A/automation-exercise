@@ -21,34 +21,22 @@ export class CategoryPage extends BasePage {
     this.tshirtLink = this.page.getByRole("link", { name: "Tshirts" });
   }
 
-  /**
-   * Verify that the products title matches the expected category title
-   * @param expectedTitle - Expected title text for the category
-   */
+ 
   async verifyProductsTitle(expectedTitle: string): Promise<void> {
     await expect(this.productsTitle).toBeVisible();
     await expect(this.productsTitle).toHaveText(expectedTitle);
   }
 
-  /**
-   * Click on the Men category
-   */
   async menCategorySelection(): Promise<void> {
     await this.menCategory.click();
   }
 
-  /**
-   * Click on the T-shirts link under Men category
-   */
+ 
   async tshirtLinkSelection(): Promise<void> {
     await this.tshirtLink.click();
   }
 
-  /**
-   * Navigate through a complete category path
-   * @param categoryName - Name of the main category (e.g., "Men", "Women")
-   * @param subcategoryName - Name of the subcategory (e.g., "Tshirts", "Dress")
-   */
+  
   async navigateToSubcategory(
     categoryName: string,
     subcategoryName: string
