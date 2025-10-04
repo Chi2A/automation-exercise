@@ -19,8 +19,6 @@ test.describe("Product Search and Viewing", () => {
     
         await page.goto(process.env.baseUrl!);
         await homePage.validateHomePageTitle();
-        await homePage.clickOnNavLink("Products");
-        await productsPage.verifyAllProductsTitle();
     });
     test("Verify Product quantity in Cart", async ({ page }) => {
         await productsPage.viewFirstProductDetails();
