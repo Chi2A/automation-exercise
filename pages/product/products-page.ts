@@ -1,10 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "../common/base-page";
 
-/**
- * Products listing page class
- * Handles product search, filtering, and navigation to product details
- */
 export class ProductsPage extends BasePage {
   private allProductsTitle!: Locator;
   private searchBar!: Locator;
@@ -12,6 +8,8 @@ export class ProductsPage extends BasePage {
   private searchedProductsTitle!: Locator;
   private allProducts!: Locator;
   private viewProductLink!: Locator;
+  private allAddToCartButtons!: Locator;
+  private continueShoppingButton!: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -31,35 +29,27 @@ export class ProductsPage extends BasePage {
     this.viewProductLink = this.page
       .locator(".nav.nav-pills.nav-justified > li > a")
       .first();
+    this.allAddToCartButtons = this.page.locator(
+      'div[class="productinfo text-center"] a'
+    );
+    this.continueShoppingButton = this.page.locator(
+      'button[class="btn btn-success close-modal btn-block"]'
+    );
   }
 
-  /**
-   * Verify that the "All Products" title is visible
-   */
   async verifyAllProductsTitle(): Promise<void> {
     await expect(this.allProductsTitle).toBeVisible();
   }
 
-  /**
-   * Verify that the "Searched Products" title is visible
-   */
   async searchProductsTitleIsVisible(): Promise<void> {
     await expect(this.searchedProductsTitle).toBeVisible();
   }
 
-  /**
-   * Search for products using the search functionality
-   * @param searchText - Text to search for
-   */
   async searchForProduct(searchText: string): Promise<void> {
     await this.searchBar.fill(searchText);
     await this.searchButton.click();
   }
 
-  /**
-   * Verify that products are visible in the results
-   * Checks that at least one product is displayed and all visible products are actually visible
-   */
   async verifyProductsAreVisible(): Promise<void> {
     const productCount = await this.allProducts.count();
     expect(productCount).toBeGreaterThan(0);
@@ -69,10 +59,14 @@ export class ProductsPage extends BasePage {
     }
   }
 
-  /**
-   * Click on the first product's "View Product" link to navigate to product details
-   */
   async viewFirstProductDetails(): Promise<void> {
     await this.viewProductLink.click();
   }
+  async addAllProductsToCart(): Promise<void> {
+    for (let i = 0; i < (await this.allAddToCartButtons.count()); i++) {
+      await this.allAddToCartButtons.nth(i).click();
+      await this.continueShoppingButton.click();
+    }
+  }
+
 }
