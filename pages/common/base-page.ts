@@ -37,29 +37,24 @@ export class BasePage {
     );
   }
 
-
   async clickOnNavLink(linkText: string): Promise<void> {
     await this.topNavigationLocators.getByText(linkText).click();
   }
 
-  
-  async scrollToFooter(): Promise<void> {
+  async scrollTo(): Promise<void> {
     await this.footerText.scrollIntoViewIfNeeded();
   }
 
-  
   async verifyFooterTextIsVisible(): Promise<void> {
     await expect(this.footerText).toBeVisible();
     await expect(this.footerText).toHaveText("Subscription");
   }
 
-  
   async enterEmailAddress(email: string): Promise<void> {
     await this.emailAddressField.fill(email);
     await this.arrowButton.click();
   }
 
-  
   async verifySuccessMessage(): Promise<void> {
     await expect(this.successMessage).toBeVisible();
     await expect(this.successMessage).toHaveText(
@@ -73,7 +68,7 @@ export class BasePage {
     await expect(this.alert).toBeVisible();
   }
   async clickOnAlert(): Promise<void> {
-    this.page.once('dialog', async dialog => await dialog.accept());
+    this.page.once("dialog", async (dialog) => await dialog.accept());
     await this.alert.click();
   }
   async verifySubscriptionTextIsVisible(): Promise<void> {
@@ -85,5 +80,4 @@ export class BasePage {
   async verifySubUpperTextIsVisible(): Promise<void> {
     await expect(this.subUpperText).toBeVisible();
   }
-
 }
