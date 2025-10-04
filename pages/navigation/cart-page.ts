@@ -12,9 +12,9 @@ export class CartsPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.cartProducts = page.locator("tbody tr");
-    this.cartPageTitle = page.locator("ol[class='breadcrumb']")
+    this.cartPageTitle = page.locator("ol[class='breadcrumb'] li").nth(1);
     this.deleteIcon = page.locator("a[class='cart_quantity_delete']");
-    this.emptyCartMessage = page.locator("span[id='empty_cart']");
+    this.emptyCartMessage = page.locator("span[id='empty_cart'] b");
   }
 
   async verifyCartPageTitle(): Promise<void> {
@@ -29,7 +29,7 @@ export class CartsPage extends BasePage {
   }
   async deleteAllProductsFromCart(): Promise<void> {
     while (await this.deleteIcon.count() > 0) {
-      await this.deleteIcon.first().click({ delay: 500 });
+      await this.deleteIcon.first().click({ delay: 200 });
     }
     }
 

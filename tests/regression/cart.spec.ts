@@ -31,7 +31,7 @@ test.describe("Product Search and Viewing", () => {
     });
 
     test("Remove Products From Cart", async ({ page }) => {
-        await productsPage.add10ItemsToCart(10);
+        await productsPage.addItemsToCart(10);
         await productsDetailsPage.clickOnCart();
         await cartPage.verifyCartPageTitle();
         await cartPage.deleteAllProductsFromCart();

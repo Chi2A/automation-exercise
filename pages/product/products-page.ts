@@ -76,9 +76,10 @@ export class ProductsPage extends BasePage {
   }
 
 
-  async add10ItemsToCart(productsDetailsPage: any): Promise<void> {
-    for (let i = 1; i <= 10; i++) {
-      await productsDetailsPage.addToCart();
+  async addItemsToCart(amountOfItems: number): Promise<void> {
+    for (let i = 1; i <= amountOfItems; i++) {
+      await this.allAddToCartButtons.nth(i).click();
+      await this.continueShoppingButton.click();
     }
 
 
