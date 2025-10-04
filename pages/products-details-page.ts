@@ -12,7 +12,7 @@ export class ProductsDetailsPage extends BasePage {
   private addToCartButton: Locator;
   private cartIcon: Locator;
   private allProducts: Locator;
-  continueShoppingButton: any;
+  private continueShoppingButton: Locator;
   constructor(page: Page) {
     super(page);
     this.productInfo = page.locator('div[class="view-product"] img');
@@ -26,6 +26,9 @@ export class ProductsDetailsPage extends BasePage {
     this.cartIcon = page.locator('a[href="/view_cart"] i');
     this.allProducts = page.locator(
       'div[class="features_items"] div[class="single-products"]'
+    );
+    this.continueShoppingButton = page.locator(
+      'button[class="btn btn-success close-modal btn-block"]'
     );
   }
 
@@ -52,8 +55,6 @@ export class ProductsDetailsPage extends BasePage {
   async addToCart(): Promise<void> {
     await this.addToCartButton.click();
   }
-
- 
 
   async clickOnCart(): Promise<void> {
     await this.cartIcon.click();
