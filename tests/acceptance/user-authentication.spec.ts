@@ -39,6 +39,4 @@ test.describe("User Authentication", () => {
     await homePage.verifyExistingUserLoginMessage();
   });
 
-
-
 });

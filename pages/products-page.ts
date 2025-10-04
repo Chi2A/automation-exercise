@@ -2,12 +2,15 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./base-page";
 
 export class ProductsPage extends BasePage {
+  
   private allProductsTitle: Locator;
   private searchBar: Locator;
   private searchButton: Locator;
   private searchedProductsTitle: Locator;
   private allProducts: Locator;
   private viewProductLink: Locator;
+  private addToCartButtons: Locator;
+  private continueShoppingButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -23,6 +26,8 @@ export class ProductsPage extends BasePage {
     this.viewProductLink = page
       .locator(".nav.nav-pills.nav-justified > li > a")
       .first();
+    this.addToCartButtons = page.locator('a[data-product-id]');
+    this.continueShoppingButton = page.locator('button:has-text("Continue Shopping")');
   }
   async verifyAllProductsTitle(): Promise<void> {
     await expect(this.allProductsTitle).toBeVisible();
@@ -45,5 +50,22 @@ export class ProductsPage extends BasePage {
   }
   async viewFirstProductDetails(): Promise<void> {
     await this.viewProductLink.click();
+  }
+  
+  async addAllProductsToCart(): Promise<void> {
+    const productCount = await this.allProducts.count();
+    
+    for (let i = 0; i < productCount; i++) {
+      const addToCartButton = this.allProducts.nth(i).locator('a[data-product-id]');
+      await addToCartButton.click();
+      
+      // Wait for and handle the modal that appears after adding to cart
+      try {
+        await this.continueShoppingButton.waitFor({ timeout: 2000 });
+        await this.continueShoppingButton.click();
+      } catch {
+        // Continue if modal doesn't appear
+      }
+    }
   }
 }
