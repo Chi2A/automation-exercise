@@ -35,8 +35,7 @@ export class AuthPage extends BasePage {
     this.loginButton = this.page.locator('button[data-qa="login-button"]');
     this.loginErrorMessage = this.page.locator("div[class='login-form'] p");
     this.loggedAsAnUser = this.page
-      .getByRole("listitem")
-      .filter({ hasText: "Logged in as test12345q" });
+      .getByText("Logged in as test12345q");
 
     // Registration elements
     this.signUpTitle = this.page.locator("div[class='signup-form'] h2");
@@ -66,7 +65,7 @@ export class AuthPage extends BasePage {
     await this.loginPassword.fill(password);
     await this.loginButton.click();
   }
-  
+
   async verifyUserIsLoggedIn(userName: string): Promise<void> {
     await expect(this.loggedAsAnUser).toBeVisible();
     await expect(this.loggedAsAnUser).toHaveText(`Logged in as ${userName}`);
