@@ -10,6 +10,9 @@ on:
     - cron: "0 2 * * *"
   # Allows the workflow to be triggered manually from GitHub UI
   workflow_dispatch:
+
+  
+
 # Defines the jobs that run in this workflow
 jobs:
   # Job name that runs Playwright tests
