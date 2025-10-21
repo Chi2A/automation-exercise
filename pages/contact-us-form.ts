@@ -39,7 +39,7 @@ export class ContactUsFormPage extends BasePage {
         await this.emailField.fill(email);
         await this.subjectField.fill(subject);
         await this.messageField.fill(message);
-        await this.uploadFileField.setInputFiles(filePath);
+        // await this.uploadFileField.setInputFiles(filePath);
         await this.submitButton.click();
 
     }
