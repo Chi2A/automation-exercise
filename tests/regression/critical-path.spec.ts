@@ -13,7 +13,7 @@ test.describe("Critical Path Tests", () => {
     productsPage = new ProductsPage(page);
     basePage = new BasePage(page);
 
-    await page.goto(process.env.baseUrl!);
+    await page.goto(process.env.BASE_URL!);
     await homePage.validateHomePageTitle();
   });
 
