@@ -77,6 +77,6 @@ jobs:
           # Directory path containing the test result files
           path: test-results/
           # Number of days to keep the artifact before automatic deletion
-          retention- days: 30 
-          
+          retention-days: 30
+
 
