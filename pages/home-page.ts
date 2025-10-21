@@ -14,7 +14,6 @@ export class HomePage extends BasePage {
   private loginPassword: Locator
   private loginButton: Locator;
   private errorMessage: Locator
-  private successfulLoginMessage: Locator;
   private deleteAccountLink: Locator;
   private accountDeletedMessage: Locator;
   private newUserSignUpForm: Locator
@@ -40,7 +39,6 @@ export class HomePage extends BasePage {
     this.signUpName = page.locator('input[data-qa="signup-name"]')
     this.loginButton = page.locator('button[data-qa="login-button"]')
     this.errorMessage = page.locator("div[class='login-form'] p");
-    this.successfulLoginMessage = page.locator('i[class="fa fa-user"]')
     this.deleteAccountLink = page.getByRole('link', { name: ' Delete Account' });
     this.accountDeletedMessage = page.locator("div[class='col-sm-9 col-sm-offset-1'] b")
     this.newUserSignUpForm = page.locator("div[class='signup-form'] h2")

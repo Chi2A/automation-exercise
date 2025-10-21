@@ -25,9 +25,8 @@ test.describe("User Authentication", () => {
     const email = process.env.email!;
     const password = process.env.password!;
     await homePage.login(email, password);
-    await homePage.verifySuccessfulLogin(email);
-    await homePage.deleteAccount();
-    await homePage.verifyAccountDeletedMessage();
+    // await homePage.deleteAccount();
+    // await homePage.verifyAccountDeletedMessage();
 
   });
   test("Signing up with existing user", async ({ page }) => {

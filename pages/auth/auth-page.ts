@@ -12,6 +12,7 @@ export class AuthPage extends BasePage {
   private loginPassword!: Locator;
   private loginButton!: Locator;
   private loginErrorMessage!: Locator;
+  private loggedAsAnUser!: Locator;
 
   // Registration form elements
   private signUpTitle!: Locator;
@@ -33,6 +34,8 @@ export class AuthPage extends BasePage {
     this.loginPassword = this.page.locator('input[data-qa="login-password"]');
     this.loginButton = this.page.locator('button[data-qa="login-button"]');
     this.loginErrorMessage = this.page.locator("div[class='login-form'] p");
+    this.loggedAsAnUser = this.page
+      .getByText("Logged in as test12345q");
 
     // Registration elements
     this.signUpTitle = this.page.locator("div[class='signup-form'] h2");
@@ -61,6 +64,11 @@ export class AuthPage extends BasePage {
     await this.loginEmail.fill(email);
     await this.loginPassword.fill(password);
     await this.loginButton.click();
+  }
+
+  async verifyUserIsLoggedIn(userName: string): Promise<void> {
+    await expect(this.loggedAsAnUser).toBeVisible();
+    await expect(this.loggedAsAnUser).toHaveText(`Logged in as ${userName}`);
   }
 
   /**
