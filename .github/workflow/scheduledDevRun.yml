@@ -22,13 +22,14 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-        
+
       - name: Run Playwright Tests
         run: npx playwright test
         
         env:
           BASE_URL: "https://automationexercise.com" 
-         
+      
+
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: always()
