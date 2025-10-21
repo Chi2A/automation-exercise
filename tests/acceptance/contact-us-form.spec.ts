@@ -12,7 +12,7 @@ test.describe("Contact Us Form", () => {
         basePage = new BasePage(page);
         contactUsFormPage = new ContactUsFormPage(page);
         homePage = new HomePage(page);
-        await page.goto(process.env.BASE_URL!);
+        await page.goto(process.env.baseURL!);
         await homePage.validateHomePageTitle();
     });
 

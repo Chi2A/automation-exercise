@@ -10,7 +10,7 @@ test.describe("Newsletter Subscription", () => {
     homePage = new HomePage(page);
     basePage = new BasePage(page);
 
-    await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.baseURL!);
     await homePage.validateHomePageTitle();
   });
 

@@ -48,7 +48,7 @@ jobs:
         # Sets environment variables available during test execution
         env:
           # Base URL for the application under test
-          BASE_URL: "https://automationexercise.com"
+          baseURL: "https://automationexercise.com"
           EMAIL: ${{ secrets.email }}
           PASSWORD: ${{ secrets.password }}
 

@@ -8,7 +8,7 @@ test.describe("User Authentication", () => {
   test.beforeEach("Setup authentication page", async ({ page }) => {
     homePage = new HomePage(page);
 
-    await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.baseURL!);
     await homePage.validateHomePageTitle();
   });
 
