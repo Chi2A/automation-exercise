@@ -22,9 +22,9 @@ test.describe("User Authentication", () => {
   test("Login with valid credentials", async ({ page }) => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyLoginTitle();
-    const email = process.env.email!;
-    const password = process.env.password!;
-    await homePage.login(email, password);
+    const email = process.env.EMAIL!;
+    const password = process.env.PASSWORD!;
+    await homePage.login(email!, password!);
     // await homePage.deleteAccount();
     // await homePage.verifyAccountDeletedMessage();
 
