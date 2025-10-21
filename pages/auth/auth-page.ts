@@ -60,11 +60,11 @@ export class AuthPage extends BasePage {
    * @param email - User email address
    * @param password - User password
    */
-  async login(email: string, password: string): Promise<void> {
-    await this.loginEmail.fill(email);
-    await this.loginPassword.fill(password);
-    await this.loginButton.click();
-  }
+  // async login(email: string, password: string): Promise<void> {
+  //   await this.loginEmail.fill(email);
+  //   await this.loginPassword.fill(password);
+  //   await this.loginButton.click();
+  // }
 
   async verifyUserIsLoggedIn(userName: string): Promise<void> {
     await expect(this.loggedAsAnUser).toBeVisible();
