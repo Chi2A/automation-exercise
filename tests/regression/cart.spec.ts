@@ -17,7 +17,7 @@ test.describe("Product Search and Viewing", () => {
         productsDetailsPage = new ProductsDetailsPage(page);
         cartPage = new CartsPage(page);
     
-        await page.goto(process.env.baseURL!);
+           await page.goto("/");
         await homePage.validateHomePageTitle();
     });
     test("Verify Product quantity in Cart", async ({ page }) => {
