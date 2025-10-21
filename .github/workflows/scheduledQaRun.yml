@@ -28,7 +28,7 @@ jobs:
         run: npx playwright test
         
         env:
-          BASE_URL: "https://automationexercise.com" 
+          baseURL: "https://automationexercise.com" 
           EMAIL: ${{ secrets.email }}
           PASSWORD: ${{ secrets.password }}
        

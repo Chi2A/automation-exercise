@@ -19,7 +19,7 @@ test.describe("Product Search and Viewing", () => {
     cartPage = new CartsPage(page);
     authPage = new AuthPage(page);
 
-    await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.baseURL!);
     await homePage.validateHomePageTitle();
     await homePage.clickOnNavLink("Products");
     await productsPage.verifyAllProductsTitle();
@@ -32,12 +32,12 @@ test.describe("Product Search and Viewing", () => {
   });
 
   test("should view product details successfully", async ({ page }) => {
-    await productsPage.viewProductDetails();
+    await productsPage.viewFirstProductDetails();
     await productsDetailsPage.verifyProductDetails();
   });
 
   test("Search Products and Verify Cart After Login", async ({ page }) => {
-    await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.baseURL!);
     await homePage.clickOnNavLink("Products");
     await productsPage.verifyAllProductsTitle();
     await productsPage.searchForProduct("top");

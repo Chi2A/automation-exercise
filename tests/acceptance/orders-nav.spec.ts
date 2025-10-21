@@ -25,7 +25,7 @@ test.describe("Orders Verification", () => {
         homePage = new HomePage(page);
       ordersPage = new OrdersPage(page);
         checkoutPage = new CheckoutPage(page);
-    await page.goto(process.env.BASE_URL!);
+    await page.goto(process.env.baseURL!);
   });
 
     test("Place Order: Login before Checkout", async ({ page }) => {
