@@ -27,6 +27,7 @@ test.describe("User Authentication", () => {
     await homePage.login(email!, password!);
     // await homePage.deleteAccount();
     // await homePage.verifyAccountDeletedMessage();
+  });
     test("Signing up with existing user", async ({ page }) => {
       await homePage.clickOnSignUpLoginLink();
       await homePage.verifyNewUserSignUpForm();
@@ -36,4 +37,3 @@ test.describe("User Authentication", () => {
       await homePage.verifyExistingUserLoginMessage();
     });
   });
-});
