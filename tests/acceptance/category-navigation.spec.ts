@@ -10,7 +10,7 @@ test.describe("Category Navigation", () => {
     homePage = new HomePage(page);
     categoryPage = new CategoryPage(page);
 
-    await page.goto(process.env.baseURL!);
+    await page.goto("/");
     await homePage.validateHomePageTitle();
     await homePage.clickOnNavLink("Products");
   });

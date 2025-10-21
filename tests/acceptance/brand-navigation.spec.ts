@@ -10,7 +10,7 @@ test.describe("Brand Navigation", () => {
     homePage = new HomePage(page);
     brandsPage = new BrandsPage(page);
 
-    await page.goto(process.env.baseURL!);
+    await page.goto('/');
     await homePage.validateHomePageTitle();
     await homePage.clickOnNavLink("Products");
   });
