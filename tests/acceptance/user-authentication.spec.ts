@@ -27,15 +27,13 @@ test.describe("User Authentication", () => {
     await homePage.login(email!, password!);
     // await homePage.deleteAccount();
     // await homePage.verifyAccountDeletedMessage();
-
+    test("Signing up with existing user", async ({ page }) => {
+      await homePage.clickOnSignUpLoginLink();
+      await homePage.verifyNewUserSignUpForm();
+      const email = process.env.EMAIL || "";
+      const userName = process.env.USER_NAME || "";
+      await homePage.signUp(userName, email);
+      await homePage.verifyExistingUserLoginMessage();
+    });
   });
-  test("Signing up with existing user", async ({ page }) => {
-    await homePage.clickOnSignUpLoginLink();
-    await homePage.verifyNewUserSignUpForm();
-    const email = process.env.EMAIL!;
-    const userName = process.env.USER_NAME!;
-    await homePage.signUp(userName, email);
-    await homePage.verifyExistingUserLoginMessage();
-  });
-
 });
