@@ -8,7 +8,7 @@ test.describe("Scroll Up and Down", () => {
   test.beforeEach(async ({ page }) => {
     basePage = new BasePage(page);
 
-    await page.goto(process.env.baseUrl!);
+    await page.goto(process.env.BASE_URL!);
   });
   test("Verify Scroll Up using 'Arrow' button and Scroll Down functionality", async ({
     page,
