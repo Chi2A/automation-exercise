@@ -48,6 +48,7 @@ jobs:
             baseURL: "https://automationexercise.com/"
             EMAIL: ${{ secrets.email }}
             PASSWORD: ${{ secrets.password }}
+            USER_NAME: ${{ secrets.user_name }}
         run: npm test
           
 
