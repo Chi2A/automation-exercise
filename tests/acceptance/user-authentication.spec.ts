@@ -27,12 +27,17 @@ test.describe("User Authentication", () => {
     await homePage.login(email!, password!);
   
   });
-    // test("Signing up with existing user", async ({ page }) => {
-    //   await homePage.clickOnSignUpLoginLink();
-    //   await homePage.verifyNewUserSignUpForm();
-    //   const email = process.env.EMAIL!;
-    //   const userName = process.env.USER_NAME!;
-    //   await homePage.signUp(userName, email!);
-    //   await homePage.verifyExistingUserLoginMessage();
-    // });
+    test("Signing up with existing user", async ({ page }) => {
+      await homePage.clickOnSignUpLoginLink();
+      await homePage.verifyNewUserSignUpForm();
+      const email = process.env.EMAIL!;
+      const userName = process.env.USER_NAME!;
+       if (!email || !userName) {
+         throw new Error(
+           "EMAIL or USER_NAME environment variables are not set"
+         );
+       }
+      await homePage.signUp(userName, email!);
+      await homePage.verifyExistingUserLoginMessage();
+    });
   });
