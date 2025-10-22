@@ -99,9 +99,9 @@ export class HomePage extends BasePage {
     await expect(this.existingUserLoginMessage).toBeVisible();
     await expect(this.existingUserLoginMessage).toHaveText("Email Address already exist!");
   }
-  async signUp(name:string, email:string): Promise<void> {
-    await this.signUpName.fill(name);
-    await this.signUpEmail.fill(email);
+  async signUp(USER_NAME:string, EMAIL:string): Promise<void> {
+    await this.signUpName.fill(USER_NAME);
+    await this.signUpEmail.fill(EMAIL);
     await this.signUpButton.click();
   }
 
