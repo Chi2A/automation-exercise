@@ -43,14 +43,12 @@ jobs:
         run: npx playwright install --with-deps
 
       # Step 5: Executes the Playwright test suite
-      - name: Run Playwright Tests
-        run: npx playwright test
-        # Sets environment variables available during test execution
+      - name: Run tests
         env:
-          # Base URL for the application under test
-          baseURL: "https://automationexercise.com/"
-          EMAIL: ${{ secrets.email }}
-          PASSWORD: ${{ secrets.password }}
+            baseURL: "https://automationexercise.com/"
+            EMAIL: ${{ secrets.email }}
+            PASSWORD: ${{ secrets.password }}
+        run: npm test
           
 
       # Step 6: Uploads the HTML test report as an artifact
