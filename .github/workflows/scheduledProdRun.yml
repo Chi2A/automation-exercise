@@ -51,6 +51,7 @@ jobs:
           baseURL: "https://automationexercise.com/"
           EMAIL: ${{ secrets.email }}
           PASSWORD: ${{ secrets.password }}
+          
 
       # Step 6: Uploads the HTML test report as an artifact
       - name: Upload Playwright Report
