@@ -22,17 +22,17 @@ test.describe("User Authentication", () => {
   test("Login with valid credentials", async ({ page }) => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyLoginTitle();
-    const email = process.env.EMAIL!;
-    const password = process.env.PASSWORD!;
-    await homePage.login(email!, password!);
-  
+    const EMAIL = process.env.EMAIL!;
+    const PASSWORD = process.env.PASSWORD!;
+    await homePage.login(EMAIL, PASSWORD);
+
   });
   test("Signing up with existing user", async ({ page }) => {
     await homePage.clickOnSignUpLoginLink();
     await homePage.verifyNewUserSignUpForm();
-    const email = process.env.EMAIL!;
-    const userName = process.env.USER_NAME!;
-    await homePage.signUp(userName!, email!);
+    const EMAIL = process.env.EMAIL!;
+    const USER_NAME = process.env.USER_NAME!;
+    await homePage.signUp(USER_NAME, EMAIL);
     await homePage.verifyExistingUserLoginMessage();
   });
 });
