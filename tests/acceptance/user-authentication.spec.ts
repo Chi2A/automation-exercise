@@ -32,7 +32,7 @@ test.describe("User Authentication", () => {
     await homePage.verifyNewUserSignUpForm();
     const email = process.env.EMAIL!;
     const userName = process.env.USER_NAME!;
-    await homePage.signUp(userName, email);
+    await homePage.signUp(userName!, email!);
     await homePage.verifyExistingUserLoginMessage();
   });
 });
